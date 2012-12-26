@@ -1,5 +1,5 @@
 #!/bin/bash -e
 
 [[ -d ./build ]] || mkdir ./build
-./misc/crxmake.sh ./src ./misc/tcsi_googlechrome.pem 
+./misc/crxmake.sh ./src ./misc/tcsi.pem 
 mv src.crx ./build/tsci.crx
