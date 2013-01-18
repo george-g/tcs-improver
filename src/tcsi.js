@@ -12,13 +12,16 @@ function updateHoursSumInformer() {
 }
 
 function addHoursSumInformer() {
-    var html = '<div style="width: 80px; height: 20px; position: absolute; right: 20px; top: 34px; background-color: rgba(101, 150, 211, 0.8);'
+    var html = '<div style="width: 150px; height: 22px; position: absolute; right: 90px; top: 33px; background-color: rgba(101, 150, 211, 0.8);'
     + ' color: white; border: black solid 1; padding-left: 20px; border-radius: 10;" id="hours_sum_informer_container">'
+    + '<input type="button" name="Confirm" value="Confirm" class="button" '
+    + 'onclick="document.getElementById(\'subConfirm\').name=\'Confirm\'; document.getElementById(\'subConfirm\').value=\'Confirm\'; document.forms[0].submit()"> '
     + 'Sum: <span id="hours_sum_informer"></span> h</div>';
     $("body").append(html);
+    $("form").append("<input id=\"subConfirm\" type=\"hidden\">");
     
     $(window).scroll(function(e){
-        var newPosition = $(window).scrollTop() + 34;
+        var newPosition = $(window).scrollTop() + 33;
         $('#hours_sum_informer_container').css('top', newPosition);
     });
     setTimeout(updateHoursSumInformer, 500);
