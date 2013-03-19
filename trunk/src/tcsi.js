@@ -55,16 +55,16 @@ function collapseNotEdited() {
     tasks.find('[id^=btn_colapse_]').html('+');
 }
 
-(function(window, undefined ) {
+(function() {
 
     var w;
     w = window;   
   
-    if (w.self != w.top){
+    if (window.self != window.top){
         return;
     }
       
-    if (w.location.href.indexOf('reports') > 0) {
+    if (window.location.href.indexOf('reports') > 0) {
         addHoursSumInformer();
         
         $('input:[name^=hours_]').each(function(index) {
@@ -78,6 +78,9 @@ function collapseNotEdited() {
          
         addCollapseButtonsListener();
         collapseNotEdited();
-    }
+    } else if (window.location.href.indexOf('requests/info') > 0) {        
+        // delete &nbsp; for hide horizontal scroll bar in description span (index 13)
+        document.body.getElementsByClassName("text")[13].innerHTML = document.body.getElementsByClassName("text")[13].innerHTML.replace(/&nbsp;/g, ' ');
+    }    
     
-})(window);
+})();
