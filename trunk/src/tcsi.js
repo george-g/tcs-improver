@@ -56,9 +56,6 @@ function collapseNotEdited() {
 }
 
 (function() {
-
-    var w;
-    w = window;   
   
     if (window.self != window.top){
         return;
@@ -81,6 +78,9 @@ function collapseNotEdited() {
     } else if (window.location.href.indexOf('requests/info') > 0) {        
         // delete &nbsp; for hide horizontal scroll bar in description span (index 13)
         document.body.getElementsByClassName("text")[13].innerHTML = document.body.getElementsByClassName("text")[13].innerHTML.replace(/&nbsp;/g, ' ');
-    }    
+    } else if (window.location.href.indexOf('bugs/info') > 0) {        
+        // resize textarea with bug description by content
+        document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px"
+    }     
     
 })();
