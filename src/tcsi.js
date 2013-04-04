@@ -40,7 +40,7 @@ function addCollapseButtonsListener() {
 }
  
 function toggleCollapse(object){
-	if (object.target.innerHTML == '+') {
+    if (object.target.innerHTML == '+') {
         $(object.target).parents('[id^=task]').find('[id^=report]').show();
         object.target.innerHTML = '-'
     } else {    
@@ -80,7 +80,7 @@ function collapseNotEdited() {
         document.body.getElementsByClassName("text")[13].innerHTML = document.body.getElementsByClassName("text")[13].innerHTML.replace(/&nbsp;/g, ' ');
     } else if (window.location.href.indexOf('bugs/info') > 0) {        
         // resize textarea with bug description by content
-        document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px"
+        document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
     }     
     
 })();
