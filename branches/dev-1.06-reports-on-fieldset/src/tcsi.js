@@ -1,3 +1,13 @@
+function getParameterByName( name,href ) {
+    name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+    var regexS = "[\\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( href );
+    if( results == null )
+        return "";
+    else
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 function updateHoursSumInformer() {
     var sum = 0;
@@ -30,7 +40,7 @@ function addHoursSumInformer() {
 function collapseButtonHTML(index) {
     var id = 'btn_colapse_' + index;
     id = '"' + id + '"';
-    var html = '<button id=' + id + ' onclick="this">-</button>';
+    var html = '<span class="collapseButton" id=' + id + ' onclick="this">-&nbsp;</span>';
     
     return html;
 }
@@ -42,7 +52,7 @@ function addCollapseButtonsListener() {
 function toggleCollapse(object){
     if (object.target.innerHTML == '+') {
         $(object.target).parents('[id^=task]').find('[id^=report]').show();
-        object.target.innerHTML = '-'
+        object.target.innerHTML = '-&nbsp;'
     } else {    
         $(object.target).parents('[id^=task]').find('[id^=report]').hide();
         object.target.innerHTML = '+';
@@ -64,15 +74,52 @@ function collapseNotEdited() {
     if (window.location.href.indexOf('reports') > 0) {
         addHoursSumInformer();
         
+        // create NORMAL (not weaved) HTML <form>
+        var reportForm = $('form').first();
+        var formElements = reportForm.parent();
+        reportForm.insertAfter('table:first');
+        reportForm.append(formElements);
+        
+        // add attribute id='hours_xxx'
         $('input:[name^=hours_]').each(function(index) {
                 $(this).attr('id', 'hours_' + index);
             })
+        // add attributes id=task_xxx, id=report_xxx and colapse button
         $('td > table:has(input[id^=hours_])').each(function(index) {        
                 $(this).attr('id', 'task_' + index);
                 $(this).find('tr:eq(3)').attr('id', 'report_' + index);
                 $(this).find('td>span>a').parent().before(collapseButtonHTML(index));
             })
-         
+        
+        // change field sets based on table to based on fieldset element
+        var fieldsetsOnTable = $('span.top_text').parents('table');
+        fieldsetsOnTable.each(function() {
+            var fieldsetOnTable = $(this);
+            var projectId = getParameterByName( 'project_id', fieldsetOnTable.find('a').first().attr('href') );
+            var projectName = fieldsetOnTable.find('span.top_text').text();
+            var legendSpan = $(document.createElement('span'))
+                    .addClass('top_text')
+                    .text(projectName);
+            var legend = $(document.createElement('legend'))
+                    .append(legendSpan);
+            var fielset = $(document.createElement('fieldset'))
+                    .attr('id', 'id="project_' + projectId )
+                    .attr('project_id', projectId)
+                    .append(legend)
+                    .append(fieldsetOnTable.find('table[id^=task_]'));
+                    //.insertAfter(fieldsetOnTable);
+            reportForm.append(fielset);
+            fieldsetOnTable.remove();
+            /*var fielset =   '<fieldset id="project_' + projectId + '" project_id = "' + projectId + '"  >' +
+                                '<legend> <span class="top_text">'+ projectName + '</span> </legend>' +
+                            '</fieldset>';
+                            */
+            //$(fielset).insertAfter(fieldsetOnTable);
+            // move tasks to new field set
+            //$('fieldset[projectId="' + projectId + '"]').append(fieldsetOnTable.find('table[id^=task_]'));
+        })
+        
+        
         addCollapseButtonsListener();
         collapseNotEdited();
     } else if (window.location.href.indexOf('requests/info') > 0) {        
