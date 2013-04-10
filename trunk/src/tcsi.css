@@ -66,6 +66,10 @@ form fieldset table span.text  a {
     text-decoration: none;
 }
 
+form fieldset table span.text  a:hover {
+    color: rgb(47, 93, 128);
+}
+
 form fieldset legend {
     cursor: pointer;
 }
