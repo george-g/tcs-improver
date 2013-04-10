@@ -36,6 +36,11 @@ function updateTopPage() {
  
 function toggleCollapse(object){
     object = $(object.target);
+    if(object.prop("tagName") == 'A') {
+        return;
+    } else if(object.prop("tagName") == 'SPAN') {
+        object = object.parent();
+    }
     if (object.attr('toggle') == '-') {
         object.parents('[id^=task]').find('[id^=report]').show();
         object.attr('toggle','+');
@@ -110,6 +115,17 @@ function sortTasks(type) {
     })
 }
 
+function toogleSection(obj) {
+    obj = $(this);
+    if(obj.attr('hide') == 'true') {
+        obj.attr('hide', 'false');
+        obj.parent().children('table').show();
+    } else {
+        obj.attr('hide', 'true');
+        obj.parent().children('table').hide();
+    }
+}
+
 (function() {
   
     if (window.self != window.top){
@@ -130,6 +146,12 @@ function sortTasks(type) {
         // add attributes id=task_xxx, id=report_xxx
         $('td > table:has(input[id^=hours_])').each(function(index) {        
                 $(this).attr('id', 'task_' + index);
+                a = $(this).find('a');
+                a.parent().append(a.text());
+                newA = $(document.createElement('a'));
+                newA.text('open task').attr('href', a.attr('href')).attr('target','_blank');
+                a.parent().append(' ').append(newA);
+                a.remove();
                 $(this).attr('task_id', getParameterByName('task_id',$(this).find('a').attr('href')));
                 $(this).find('tr:eq(3)').attr('id', 'report_' + index);
                 $(this).find('table').first().click(toggleCollapse);
@@ -149,7 +171,10 @@ function sortTasks(type) {
                     .addClass('top_text')
                     .text(projectName);
             var legend = $(document.createElement('legend'))
-                    .append(legendSpan);
+                    .append(legendSpan)
+                    .attr('onselectstart','return false;')
+                    .attr('hide', 'false')
+                    .click(toogleSection);
             var fielset = $(document.createElement('fieldset'))
                     .attr('id', 'id="project_' + projectId )
                     .attr('project_id', projectId)
