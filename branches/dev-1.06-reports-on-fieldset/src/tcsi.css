@@ -26,3 +26,32 @@ fieldset legend span .top_text {
     -ms-user-select: none;
     user-select: none;
 }
+
+body {
+    padding-top: 110px;
+}
+
+.topTable {
+    position: fixed;
+    top: 0px;
+}
+
+.sumHoursContainer {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.topTableSecond {
+    position: fixed;
+    top: 60px;
+    background-color: rgb(235, 235, 235);
+    border-bottom: solid 1px black;
+}
+
+.toggledSection {
+    background-color: #eeeeee;
+}
+
+.toggledSection:hover {
+    background-color: rgb(215, 227, 236);
+}
