@@ -56,3 +56,12 @@ fieldset legend span .top_text {
 form img {
     padding-left: 3px;
 }
+
+form fieldset table span.text {
+    cursor: default;
+}
+
+form fieldset table span.text  a {
+    color: rgb(161, 173, 182);
+    text-decoration: none;
+}
