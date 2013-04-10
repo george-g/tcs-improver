@@ -22,6 +22,7 @@ function updateHoursSumInformer() {
 }
  
 function updateTopPage() {
+    $("body").css('padding-top', '110px');
     var t1 = $("body").find("table:eq(0)").addClass('topTable');
     
     var html = 'Sum: <span id="hours_sum_informer"></span> h';
