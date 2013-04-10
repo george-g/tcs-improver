@@ -1,6 +1,6 @@
 {
   "name": "TCSI",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "manifest_version": 2,
   "description": "This extension improve TCS usability.",
   "update_url": "http://tcs-improver.googlecode.com/svn/trunk/misc/tcsi_update.xml",
@@ -11,6 +11,7 @@
     {
       "matches": ["*://*.gehtsoft.com:*/tcs/*"],
       "js": ["jquery-1.7.2.min.js","tcsi.js"],
+      "css": ["tcsi.css"],
       "run_at": "document_end"
     }
   ]
