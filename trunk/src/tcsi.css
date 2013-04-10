@@ -52,3 +52,7 @@ fieldset legend span .top_text {
 .toggledSection:hover {
     background-color: rgb(215, 227, 236);
 }
+
+form img {
+    padding-left: 3px;
+}
