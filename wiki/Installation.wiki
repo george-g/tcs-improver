@@ -1,14 +1,15 @@
 #summary How to intall
 
-= Вступление =
+= Установка =
 
+TCS Improver сделан в виде плагина к браузеру Google Chrome.
 Для установки TCS Improver воспользуйтесь следующей инструкцией.
 
 == Перед установкой ==
 
    * Убедитесь что у вас установлена последняя версия браузера Google Chrome
 
-== Установка ==
+== Установка плагина ==
 
    # Запустите Google Chrome.
    # Со страницы [https://code.google.com/p/tcs-improver/downloads/list загрузки] скачайте последнюю версию TCS Improver.
