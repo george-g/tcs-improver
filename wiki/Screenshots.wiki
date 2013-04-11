@@ -1,5 +1,5 @@
 #summary Screenshots.
-#labels Links
+#labels Featured
 
 = Скриншоты =
 
