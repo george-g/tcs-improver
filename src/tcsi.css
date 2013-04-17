@@ -73,3 +73,15 @@ form fieldset table span.text  a:hover {
 form fieldset legend {
     cursor: pointer;
 }
+
+.scrollUpButton {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 10px;
+}
+
+.scrollUpButton:hover {
+    background-color: rgba(204, 0, 0, 0.35);
+}
