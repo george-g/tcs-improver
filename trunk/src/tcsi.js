@@ -126,6 +126,17 @@ function toogleSection(obj) {
     }
 }
 
+function scrollUp() {
+    window.scrollTo(0, 0);
+}
+
+function addScrollUp() {
+    var div = $("<div>");
+    div.addClass("scrollUpButton");
+    div.click(scrollUp);
+    $("body").append(div);
+}
+
 (function() {
   
     if (window.self != window.top){
@@ -201,5 +212,7 @@ function toogleSection(obj) {
         // resize textarea with bug description by content
         document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
     }     
+    
+    addScrollUp();
     
 })();
