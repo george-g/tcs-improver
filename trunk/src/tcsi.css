@@ -30,6 +30,7 @@ fieldset legend span .top_text {
 .topTable {
     position: fixed;
     top: 0px;
+    z-index: 30;
 }
 
 .sumHoursContainer {
@@ -38,6 +39,7 @@ fieldset legend span .top_text {
 }
 
 .topTableSecond {
+    z-index: 30;
     position: fixed;
     top: 60px;
     background-color: rgb(235, 235, 235);
@@ -80,8 +82,9 @@ form fieldset legend {
     left: 0px;
     height: 100%;
     width: 10px;
+    z-index: 20;
 }
 
 .scrollUpButton:hover {
-    background-color: rgba(204, 0, 0, 0.35);
+    background-color: rgba(47, 93, 128, 0.35);
 }

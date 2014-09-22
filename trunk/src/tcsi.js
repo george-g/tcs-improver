@@ -131,7 +131,7 @@ function scrollUp() {
 }
 
 function addScrollUp() {
-    var div = $("<div>");
+    var div = $("<div title=\"scroll up\">");
     div.addClass("scrollUpButton");
     div.click(scrollUp);
     $("body").append(div);
@@ -191,23 +191,18 @@ function addScrollUp() {
                     .attr('project_id', projectId)
                     .append(legend)
                     .append(fieldsetOnTable.find('table[id^=task_]'));
-                    //.insertAfter(fieldsetOnTable);
             reportForm.append(fielset);
             fieldsetOnTable.remove();
-            /*var fielset =   '<fieldset id="project_' + projectId + '" project_id = "' + projectId + '"  >' +
-                                '<legend> <span class="top_text">'+ projectName + '</span> </legend>' +
-                            '</fieldset>';
-                            */
-            //$(fielset).insertAfter(fieldsetOnTable);
-            // move tasks to new field set
-            //$('fieldset[projectId="' + projectId + '"]').append(fieldsetOnTable.find('table[id^=task_]'));
         })
         
         updateTopPage();
         
     } else if (window.location.href.indexOf('requests/info') > 0) {        
-        // delete &nbsp; for hide horizontal scroll bar in description span (index 13)
-        document.body.getElementsByClassName("text")[13].innerHTML = document.body.getElementsByClassName("text")[13].innerHTML.replace(/&nbsp;/g, ' ');
+        // delete &nbsp; for hide horizontal scroll bar
+        var elements = document.body.getElementsByClassName("text");
+        for(var i = 0; i<elements.length; i++) {
+            elements[i].innerHTML = elements[i].innerHTML.replace(/&nbsp;/g, ' ');
+        }
     } else if (window.location.href.indexOf('bugs/info') > 0) {        
         // resize textarea with bug description by content
         document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
