@@ -205,9 +205,11 @@ function addScrollUp() {
         }
         // resize textarea with bug description by content
         document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
-    } else if (window.location.href.indexOf('dialog_name=BugFix') > 0) {        
+    } else if (window.location.href.indexOf('dialog_name=') > 0) {        
         // resize window
-        window.setTimeout(function() {window.resizeTo(800,320);}, 100);
+        var height = $('#MAINTABLE')[0].scrollHeight + 100;
+        console.log($('#MAINTABLE')[0].scrollHeight, height);
+        window.setTimeout(function() {window.resizeTo(800,height);}, 100);
     } else if (window.location.href.indexOf('bugs/info') > 0) {        
         // resize textarea with bug description by content
         document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
