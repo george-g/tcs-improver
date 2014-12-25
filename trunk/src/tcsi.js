@@ -203,6 +203,11 @@ function addScrollUp() {
         for(var i = 0; i<elements.length; i++) {
             elements[i].innerHTML = elements[i].innerHTML.replace(/&nbsp;/g, ' ');
         }
+        // resize textarea with bug description by content
+        document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
+    } else if (window.location.href.indexOf('dialog_name=BugFix') > 0) {        
+        // resize window
+        window.setTimeout(function() {window.resizeTo(800,320);}, 100);
     } else if (window.location.href.indexOf('bugs/info') > 0) {        
         // resize textarea with bug description by content
         document.getElementsByName("desc")[0].style.height = 25 + document.getElementsByName("desc")[0].scrollHeight + "px";
